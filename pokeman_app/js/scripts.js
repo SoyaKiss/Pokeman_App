@@ -14,11 +14,6 @@
 //     document.write('<br />'); 
 // }
 
-
-
-
-
-
 // This is the new forEach loop
 // let pokemonList = [
 //     {name: 'Horsea', height: 4, type: ['damp', 'swim'] },
@@ -29,14 +24,6 @@
 // pokemonList.forEach(function(pokemon) {
 //     document.write('<p>' + pokemon.name + " " + pokemon.height + " " + pokemon.type +  '<\p>');
 // });
-
-
-
-
-
-
-
-
 
 // //This is putting the new code in an I.I.F.E
 let pokemonRepository = (function () {
