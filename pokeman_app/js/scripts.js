@@ -15,6 +15,10 @@
 // }
 
 
+
+
+
+
 // This is the new forEach loop
 // let pokemonList = [
 //     {name: 'Horsea', height: 4, type: ['damp', 'swim'] },
@@ -27,7 +31,14 @@
 // });
 
 
-// This is putting the new code in an I.I.F.E
+
+
+
+
+
+
+
+// //This is putting the new code in an I.I.F.E
 let pokemonRepository = (function () {
     let pokemonList = [
         {name: 'Horsea', height: 4, type: ['damp', 'swim'] },
@@ -50,11 +61,12 @@ let pokemonRepository = (function () {
     })();
 
 console.log(pokemonRepository.getAll());
-pokemonRepository.add({ name: 'Pika'});
+pokemonRepository.add({ name: 'Pikachu', height: 8, type: ['cute', 'adorable'] });
 console.log(pokemonRepository.getAll());
 
-
-
-// pokemonList.forEach(function() {
-//     document.write('<p>' + pokemon.name + " " + pokemon.height + " " + pokemon.type +  '<\p>');
-// });
+pokemonRepository.getAll().forEach(function(pokemon) {
+    document.write('<p><ul><li>Name: ' + pokemon.name + '</li><li>' + 
+                    'Height: ' + pokemon.height + '</li><li>' + 
+                    'Type: ' + pokemon.type[0] + ' + ' + pokemon.type[1] + 
+                    '</li></ul><\p>');
+});
