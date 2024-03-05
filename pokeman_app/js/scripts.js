@@ -80,3 +80,7 @@ pokemonRepository.loadList().then(function () {
 let mainTitle = document.querySelector('h1');
 mainTitle.innerText = 'Pokedex';
 mainTitle.classList.add('pokedex-title');
+
+// let icon = document.createElement('icon');
+// icon.src = 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/shiny/1.png';
+// document.getElementById('pokedex-title').appendChild(icon);
