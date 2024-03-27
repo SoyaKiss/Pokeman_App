@@ -67,7 +67,11 @@ let pokemonRepository = (function () {
     }
 
     function showDetails(item) {
-      pokemonRepository.showModal(item)
+      loadDetails(item).then(function (){
+        showModal(item);
+      });
+      // We first needed to call the loadDetails function; before showing the Modal --> because the modal
+      // is fetching data from the loadDetails function!
     }
 
     // Adding the modal here --> will need to be replaced into the showDetails method
@@ -82,17 +86,19 @@ let pokemonRepository = (function () {
       closeButtonElement.addEventListener('click', hideModal);
     
       let titleElement = document.createElement('h1');
-      titleElement.innerText = pokemon.name;
+      titleElement.innerText = 'Name: ' + pokemon.name;
       let contentElement = document.createElement('p');
-      contentElement.innerText = details.height;
+      contentElement.innerText = 'Height: ' + pokemon.height + ' in tall';
     
-      // let myImage = document.createElement('img');
-      // myImage.src = ''
-    
+      let myImage = document.createElement('img');
+      myImage.classList.add('my-image');
+      myImage.src = 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/1.png';
+      
     
       modal.appendChild(closeButtonElement);
       modal.appendChild(titleElement);
       modal.appendChild(contentElement);
+      modal.appendChild(myImage);
       modalContainer.appendChild(modal);
 
       modalContainer.classList.add('is-visible');

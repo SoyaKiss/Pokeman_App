@@ -90,7 +90,6 @@ h1.pokedex-title {
 
 }    
 
-
 #modal-container.is-visible {
     position: fixed;
     padding: 20px;
@@ -136,4 +135,11 @@ h1.pokedex-title {
     color: var(--darkGreen);
 }
 
+#show-modal {
+    display: none;
+}
+
+.my-image {
+    float: right;
+}
 
