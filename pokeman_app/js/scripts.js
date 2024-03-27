@@ -8,30 +8,31 @@ let pokemonRepository = (function () {
     function add (pokemon) {
       pokemonList.push(pokemon);
     }
+    
     function getAll() {
       return pokemonList;
     }
 
     function addListItem(pokemon) {
-        let pokemonUnorderedList = document.querySelector('.pokemon-list');
-        // This targets the UL class; pokemon-list
-        let listItem = document.createElement('li');
-        // we are creating a new variable here called list item and declaring it to be a list item (li)
-        let button = document.createElement('button');
-        // We are adding a button functionality to these list items
-        listItem.classList.add('list-item-pokemon');
-        // Here we are giving it a class
-        button.innerText = pokemon.name;
-        // This is where we call the pokemon.name --> which comes from the API
-        button.classList.add('pokemon-button');
-        // We are declaring a class name for our button
-        listItem.appendChild(button);
-        // Here we are appending the button to the list item
-        pokemonUnorderedList.appendChild(listItem);
-        // Here we are appending the new button/list item to the unordered list
-        pokemon-button.addEventListener('click', function(event) {
-          showDetails(pokemon);
-        // Here, upon clicking the button - we are executing the showDetails function which is listed below
+      let pokemonUnorderedList = document.querySelector('.pokemon-list');
+      // This targets the UL class; pokemon-list
+      let listItem = document.createElement('li');
+      // we are creating a new variable here called list item and declaring it to be a list item (li)
+      let button = document.createElement('button');
+      // We are adding a button functionality to these list items
+      listItem.classList.add('list-item-pokemon');
+      // Here we are giving it a class
+      button.innerText = pokemon.name;
+      // This is where we call the pokemon.name --> which comes from the API
+      button.classList.add('pokemon-button');
+      // We are declaring a class name for our button
+      listItem.appendChild(button);
+      // Here we are appending the button to the list item
+      pokemonUnorderedList.appendChild(listItem);
+      // Here we are appending the new button/list item to the unordered list
+      pokemon-button.addEventListener('click', function(event) {
+        showDetails(pokemon);
+      // Here, upon clicking the button - we are executing the showDetails function which is listed below
       });
     }
 
@@ -75,38 +76,40 @@ let pokemonRepository = (function () {
     }
 
     // Adding the modal here --> will need to be replaced into the showDetails method
-    function showModal(pokemon, item) {
+    function showModal(item) {
       modalContainer.innerHTML = '';
       let modal = document.createElement('div');
       modal.classList.add('modal');
-    
+      
       let closeButtonElement = document.createElement('button');
       closeButtonElement.classList.add('modal-close');
       closeButtonElement.innerText = 'Close';
       closeButtonElement.addEventListener('click', hideModal);
-    
+      
       let titleElement = document.createElement('h1');
-      titleElement.innerText = 'Name: ' + pokemon.name;
+      titleElement.innerText = 'Name: ' + item.name;
+      
       let contentElement = document.createElement('p');
-      contentElement.innerText = 'Height: ' + pokemon.height + ' in tall';
-    
+      contentElement.innerText = 'Height: ' + item.height + ' in tall';
+      
       let myImage = document.createElement('img');
       myImage.classList.add('my-image');
-      myImage.src = 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/1.png';
+      myImage.src = item.imageUrl;
       
-    
       modal.appendChild(closeButtonElement);
       modal.appendChild(titleElement);
       modal.appendChild(contentElement);
       modal.appendChild(myImage);
+      
       modalContainer.appendChild(modal);
-
       modalContainer.classList.add('is-visible');
       modalContainer.addEventListener('click', (e) => {
+      
       let target = e.target;
-        if (target === modalContainer) {
+      
+      if (target === modalContainer) {
           hideModal();
-    }
+      }
   });
 }
 
@@ -121,21 +124,21 @@ let pokemonRepository = (function () {
   });
 
     return {
-        add: add,
-        getAll: getAll,
-        addListItem: addListItem,
-        loadList: loadList,
-        loadDetails: loadDetails,
-        showDetails: showDetails, 
-        showModal: showModal
+      add: add,
+      getAll: getAll,
+      addListItem: addListItem,
+      loadList: loadList,
+      loadDetails: loadDetails,
+      showDetails: showDetails, 
+      showModal: showModal
     }
 
   })();
 
 pokemonRepository.loadList().then(function () {
-    pokemonRepository.getAll().forEach(function (pokemon) {
-        pokemonRepository.addListItem(pokemon);
-    });
+  pokemonRepository.getAll().forEach(function (pokemon) {
+      pokemonRepository.addListItem(pokemon);
+  });
 });
       
 document.querySelector('#show-modal').addEventListener('click', () => {
